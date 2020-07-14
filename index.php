@@ -60,33 +60,36 @@
 $name = $_GET['name'];
 $mail = $_GET['mail'];
 $age = $_GET['age'];
-$esito = 'Accesso riuscito';
+$esito = '<p class="green">Accesso riuscito</p>';
 //Se ci sono campi vuoti = accesso negato
 if (empty($name) || empty($mail) || empty($age))  {
-  $esito = 'Accesso Negato';
+  $esito = '<p class="red">Accesso Negato</p>';
 //Se il nome ha meno di 3 caratteri = accesso negato
 }elseif (strlen($name) <= 3) {
-  $esito = 'Accesso Negato';
+  $esito = '<p class="red">Accesso Negato</p>';
 //Se il campo 'mail' non contiene la '@'o il '.' = accesso negato
 }elseif (strpos($mail, '@') === false || strpos($mail, '.') === false) {
-  $esito = 'Accesso Negato';
+  $esito = '<p class="red">Accesso Negato</p>';
 //Se l'età non è un numero intero = accesso negato
 }elseif (is_numeric($age) === false) {
-  $esito = 'Accesso Negato';
+  $esito = '<p class="red">Accesso Negato</p>';
 }
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
     <title></title>
   </head>
   <body>
 
+
+
     <h1><?php echo $esito; ?></h1>
-    <h2>Welcome <?php echo $_GET["name"]; ?></h2>
-    <h2>Your email address is: <?php echo $_GET["mail"]; ?></h2>
-    <h2>Your age is: <?php echo $_GET["age"]; ?></h2>
+    <h2>Welcome <span> <?php echo $_GET["name"]; ?></span></h2>
+    <h2>Your email address is: <span><?php echo $_GET["mail"]; ?></span></h2>
+    <h2>Your age is: <span><?php echo $_GET["age"]; ?></span></h2>
 
   </body>
 </html>
