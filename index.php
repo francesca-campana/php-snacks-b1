@@ -60,16 +60,33 @@
 $name = $_GET['name'];
 $mail = $_GET['mail'];
 $age = $_GET['age'];
-
+$esito = 'Accesso riuscito';
+//Se ci sono campi vuoti = accesso negato
 if (empty($name) || empty($mail) || empty($age))  {
-  echo 'Accesso Negato';
+  $esito = 'Accesso Negato';
+//Se il nome ha meno di 3 caratteri = accesso negato
 }elseif (strlen($name) <= 3) {
-  echo 'Accesso Negato';
+  $esito = 'Accesso Negato';
+//Se il campo 'mail' non contiene la '@'o il '.' = accesso negato
 }elseif (strpos($mail, '@') === false || strpos($mail, '.') === false) {
-  echo 'Accesso Negato';
+  $esito = 'Accesso Negato';
+//Se l'età non è un numero intero = accesso negato
 }elseif (is_numeric($age) === false) {
-  echo 'Accesso Negato';
-}else {
-  echo 'Accesso riuscito';
+  $esito = 'Accesso Negato';
 }
 ?>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <h1><?php echo $esito; ?></h1>
+    <h2>Welcome <?php echo $_GET["name"]; ?></h2>
+    <h2>Your email address is: <?php echo $_GET["mail"]; ?></h2>
+    <h2>Your age is: <?php echo $_GET["age"]; ?></h2>
+
+  </body>
+</html>
